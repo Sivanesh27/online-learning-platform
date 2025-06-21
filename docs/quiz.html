@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz - Online Learning Platform</title>
+  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4">Quiz: Lesson 1</h2>
+    <form id="quizForm">
+      <div class="mb-3">
+        <label>1. What is an online learning platform?</label><br>
+        <input type="radio" name="q1" value="a"> A place to shop<br>
+        <input type="radio" name="q1" value="b"> A virtual education space<br>
+      </div>
+      <div class="mb-3">
+        <label>2. Which of the following is a key feature?</label><br>
+        <input type="radio" name="q2" value="a"> Online gaming<br>
+        <input type="radio" name="q2" value="b"> Progress tracking<br>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit Quiz</button>
+    </form>
+    <div id="result" class="mt-4"></div>
+  </div>
+
+  <script>
+    document.getElementById("quizForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const answers = { q1: "b", q2: "b" };
+      let score = 0;
+      const form = new FormData(e.target);
+      for (let [key, value] of form.entries()) {
+        if (value === answers[key]) score++;
+      }
+      document.getElementById("result").textContent = `Your Score: ${score}/2`;
+    });
+  </script>
+</body>
+</html>
