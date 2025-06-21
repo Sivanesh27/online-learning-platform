@@ -39,13 +39,14 @@
       </a>
 
       <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="register.html">Register</a></li>
+        <ul id="navLinks">
+          <li><a href="index.html">Home</a></li>
           <li><a href="lessons.html">Lessons</a></li>
           <li><a href="quiz.html">Quizzes</a></li>
           <li><a href="progress.html">Progress</a></li>
+          <li id="loginLink"><a href="login.html">Login</a></li>
+          <li id="registerLink"><a href="register.html">Register</a></li>
+          <li id="logoutLink" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -206,6 +207,55 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDDlualMDCAkRvmCs_eryjaHs_qiuYSNDc",
+    authDomain: "online-learning-platform-d2078.firebaseapp.com",
+    projectId: "online-learning-platform-d2078",
+    storageBucket: "online-learning-platform-d2078.appspot.com",
+    messagingSenderId: "994472691891",
+    appId: "1:994472691891:web:66e5232e86381f9bd008c6",
+    measurementId: "G-800V5B2Z15"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const loginLink = document.getElementById("loginLink");
+  const registerLink = document.getElementById("registerLink");
+  const logoutLink = document.getElementById("logoutLink");
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      loginLink.style.display = "none";
+      registerLink.style.display = "none";
+      logoutLink.style.display = "inline-block";
+    } else {
+      loginLink.style.display = "inline-block";
+      registerLink.style.display = "inline-block";
+      logoutLink.style.display = "none";
+    }
+  });
+
+  window.logout = function () {
+    signOut(auth).then(() => {
+      window.location.href = "index.html"; // Redirect after logout
+    }).catch((error) => {
+      alert("Logout failed: " + error.message);
+    });
+  };
+
+  // Highlight active page
+  const currentPage = location.pathname.split("/").pop();
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active");
+    }
+  });
+</script>
 
 </body>
 
