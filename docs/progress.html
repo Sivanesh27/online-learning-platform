@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Progress - Online Learning Platform</title>
-  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
 </head>
 <body>
   <div class="container mt-5">
-    <h2 class="mb-4">Your Progress</h2>
-    <table class="table table-bordered">
-      <thead class="table-dark">
+    <h2 class="mb-4 text-center">Your Learning Progress</h2>
+    <table class="table table-bordered table-striped">
+      <thead class="table-success">
         <tr>
           <th>Lesson</th>
           <th>Status</th>
@@ -20,12 +21,12 @@
       <tbody>
         <tr>
           <td>Lesson 1: Introduction</td>
-          <td>Completed</td>
+          <td><span class="badge bg-success">Completed</span></td>
           <td>2/2</td>
         </tr>
         <tr>
           <td>Lesson 2: UI Navigation</td>
-          <td>Not Attempted</td>
+          <td><span class="badge bg-secondary">Not Attempted</span></td>
           <td>-</td>
         </tr>
       </tbody>
