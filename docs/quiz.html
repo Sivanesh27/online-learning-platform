@@ -41,7 +41,25 @@
     <div id="result" class="text-center mt-4 fs-5 fw-semibold"></div>
   </div>
 
-  <script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDDlualMDCAkRvmCs_eryjaHs_qiuYSNDc",
+      authDomain: "online-learning-platform-d2078.firebaseapp.com",
+      projectId: "online-learning-platform-d2078",
+      storageBucket: "online-learning-platform-d2078.appspot.com",
+      messagingSenderId: "994472691891",
+      appId: "1:994472691891:web:66e5232e86381f9bd008c6",
+      measurementId: "G-800V5B2Z15"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
     document.getElementById("quizForm").addEventListener("submit", function (e) {
       e.preventDefault();
       const answers = { q1: "b", q2: "b" };
@@ -50,7 +68,21 @@
       for (let [key, value] of form.entries()) {
         if (value === answers[key]) score++;
       }
+
       document.getElementById("result").textContent = `Your Score: ${score}/2`;
+
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const userDoc = doc(db, "users", user.uid);
+          await setDoc(userDoc, {
+            quizResults: {
+              lesson1: score
+            }
+          }, { merge: true });
+        } else {
+          alert("You must be logged in to save your progress.");
+        }
+      });
     });
   </script>
 </body>
