@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register - Online Learning Platform</title>
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
 </head>
-
 <body class="d-flex align-items-center justify-content-center vh-100 bg-light">
   <div class="card p-4 shadow" style="max-width: 400px; width: 100%;">
     <h3 class="text-center mb-4">Register</h3>
     <form id="register-form">
       <div class="mb-3">
         <label for="register-email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="register-email" required>
+        <input type="email" class="form-control" id="register-email" required />
       </div>
       <div class="mb-3">
         <label for="register-password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="register-password" required>
+        <input type="password" class="form-control" id="register-password" required />
       </div>
       <button type="submit" class="btn btn-success w-100">Register</button>
       <div class="mt-3 text-center">
@@ -37,7 +35,7 @@
       apiKey: "AIzaSyDDlualMDCAkRvmCs_eryjaHs_qiuYSNDc",
       authDomain: "online-learning-platform-d2078.firebaseapp.com",
       projectId: "online-learning-platform-d2078",
-      storageBucket: "online-learning-platform-d2078.firebasestorage.app",
+      storageBucket: "online-learning-platform-d2078.appspot.com",
       messagingSenderId: "994472691891",
       appId: "1:994472691891:web:66e5232e86381f9bd008c6",
       measurementId: "G-800V5B2Z15"
@@ -52,15 +50,14 @@
       const password = document.getElementById('register-password').value;
 
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          alert('Registration successful');
+        .then(() => {
+          alert('Registration successful!');
           window.location.href = 'index.html';
         })
-        .catch((error) => {
-          alert('Registration failed: ' + error.message);
+        .catch(error => {
+          alert('Error: ' + error.message);
         });
     });
   </script>
 </body>
-
 </html>
