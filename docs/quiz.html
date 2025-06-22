@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz - Online Learning Platform</title>
-  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz - Lesson 1</title>
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
 </head>
 <body>
   <div class="container mt-5">
-    <h2 class="mb-4">Quiz: Lesson 1</h2>
-    <form id="quizForm">
+    <h2 class="text-center mb-4">Quiz: Lesson 1</h2>
+    <form id="quizForm" class="bg-light p-4 shadow-sm rounded">
       <div class="mb-3">
-        <label>1. What is an online learning platform?</label><br>
-        <input type="radio" name="q1" value="a"> A place to shop<br>
-        <input type="radio" name="q1" value="b"> A virtual education space<br>
+        <label class="form-label fw-bold">1. What is an online learning platform?</label><br />
+        <div class="form-check">
+          <input type="radio" name="q1" value="a" class="form-check-input" id="q1a"/>
+          <label class="form-check-label" for="q1a">A place to shop</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" name="q1" value="b" class="form-check-input" id="q1b"/>
+          <label class="form-check-label" for="q1b">A virtual education space</label>
+        </div>
       </div>
+
       <div class="mb-3">
-        <label>2. Which of the following is a key feature?</label><br>
-        <input type="radio" name="q2" value="a"> Online gaming<br>
-        <input type="radio" name="q2" value="b"> Progress tracking<br>
+        <label class="form-label fw-bold">2. Which of the following is a key feature?</label><br />
+        <div class="form-check">
+          <input type="radio" name="q2" value="a" class="form-check-input" id="q2a"/>
+          <label class="form-check-label" for="q2a">Online gaming</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" name="q2" value="b" class="form-check-input" id="q2b"/>
+          <label class="form-check-label" for="q2b">Progress tracking</label>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit Quiz</button>
+
+      <button type="submit" class="btn btn-primary w-100">Submit Quiz</button>
     </form>
-    <div id="result" class="mt-4"></div>
+
+    <div id="result" class="text-center mt-4 fs-5 fw-semibold"></div>
   </div>
 
   <script>
-    document.getElementById("quizForm").addEventListener("submit", function(e) {
+    document.getElementById("quizForm").addEventListener("submit", function (e) {
       e.preventDefault();
       const answers = { q1: "b", q2: "b" };
       let score = 0;
